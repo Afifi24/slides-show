@@ -9,6 +9,7 @@ export default function Gallery() {
     const element = <Item key={index} item={item} id={index} />
     columns[column] = [...columns[column], element]
   })
+  
 
   const columnElements = columns.map((column, index) => (
     <div
