@@ -1,14 +1,24 @@
-import React from "react";
-import Nav from './components/Nav'
-import Galleria from './components/Galleria'
-const App = ()=>{
+import { useContext } from 'react'
+import { CSSTransition, SwitchTransition } from 'react-transition-group'
 
-  return(
-    <div>
-          <Nav/>  
-          <Galleria/>  
+import Header from './components/Header'
+import Gallery from './components/Gallery'
+import Slideshow from './components/Slidesshow'
+import { AppContext } from './context/AppContext'
+
+function App() {
+  const { state } = useContext(AppContext)
+
+  return (
+    <div className="min-h-screen flex flex-col leading-deafult">
+      <Header />
+      <SwitchTransition>
+        <CSSTransition key={state.isSlideshow} classNames="fade" timeout={400}>
+          {state.isSlideshow ? <Slideshow /> : <Gallery />}
+        </CSSTransition>
+      </SwitchTransition>
     </div>
   )
 }
 
-export default  App
+export default App
